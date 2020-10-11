@@ -16,7 +16,10 @@ module Project01_01
 //
 
 let rec length L =
-    0     //   TO BE IMPLEMENTED
+    match L with
+    | [] -> 0
+    | e::rest -> 
+  
 
 
 //[<EntryPoint>]
