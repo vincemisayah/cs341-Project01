@@ -30,6 +30,7 @@ let rec reduce F L =
     | []       -> raise (System.ArgumentException("The input sequence was empty."))
     // Handle Singleton case <---- Example: [false]
     | hd::tail when length L = 1 -> hd
+    | x::y::rest -> F x y; reduce F rest
     
 
     // let rec _reduce F L currVal =
