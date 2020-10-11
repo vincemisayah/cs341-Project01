@@ -13,11 +13,14 @@ module Project01_06
 // You may not call List.iter directly in your solution.
 // 
 
-let iter F L =
-    ()      //   TO BE IMPLEMENTED
+let rec iter F L =
+    match L with
+    | [] -> ()
+    | hd::tl -> F hd; 
+                iter F tl 
 
 
-//[<EntryPoint>]
+[<EntryPoint>]
 let main argv =
     printfn "Testing Project 06: iter"
 

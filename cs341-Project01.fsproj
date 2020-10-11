@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <!-- <Compile Include="Program.fs" />, -->
-    <Compile Include="Project01-03.fs", "Project01-02.fs" />
+    <Compile Include="Project01-07.fs"/>
   </ItemGroup>
 
 </Project>

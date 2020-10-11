@@ -15,11 +15,13 @@ module Project01_05
 // You may not call List.map directly in your solution.
 // 
 
-let map F L =
-    []     //   TO BE IMPLEMENTED
+let rec map F L =
+    match L with
+    | [] -> []
+    | hd::tail -> F hd::map F tail
 
 
-//[<EntryPoint>]
+[<EntryPoint>]
 let main argv =
     printfn "Testing Project 05: map"
 

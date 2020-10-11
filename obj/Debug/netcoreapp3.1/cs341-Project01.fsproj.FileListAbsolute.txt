@@ -5,6 +5,7 @@
 /home/mmisay3/my_repos/cs341-Project01/obj/Debug/netcoreapp3.1/cs341-Project01.AssemblyInfoInputs.cache
 /home/mmisay3/my_repos/cs341-Project01/obj/Debug/netcoreapp3.1/cs341-Project01.AssemblyInfo.fs
 /home/mmisay3/my_repos/cs341-Project01/obj/Debug/netcoreapp3.1/cs341-Project01.genruntimeconfig.cache
+/home/mmisay3/my_repos/cs341-Project01/obj/Debug/netcoreapp3.1/cs341-Project01.fsprojAssemblyReference.cache
 /home/mmisay3/my_repos/cs341-Project01/bin/Debug/netcoreapp3.1/cs341-Project01.dll
 /home/mmisay3/my_repos/cs341-Project01/bin/Debug/netcoreapp3.1/cs341-Project01.pdb
 /home/mmisay3/my_repos/cs341-Project01/bin/Debug/netcoreapp3.1/FSharp.Core.dll
@@ -21,7 +22,6 @@
 /home/mmisay3/my_repos/cs341-Project01/bin/Debug/netcoreapp3.1/tr/FSharp.Core.resources.dll
 /home/mmisay3/my_repos/cs341-Project01/bin/Debug/netcoreapp3.1/zh-Hans/FSharp.Core.resources.dll
 /home/mmisay3/my_repos/cs341-Project01/bin/Debug/netcoreapp3.1/zh-Hant/FSharp.Core.resources.dll
-/home/mmisay3/my_repos/cs341-Project01/obj/Debug/netcoreapp3.1/cs341-Project01.fsprojAssemblyReference.cache
 /home/mmisay3/my_repos/cs341-Project01/obj/Debug/netcoreapp3.1/cs341-Project01.fsproj.CopyComplete
 /home/mmisay3/my_repos/cs341-Project01/obj/Debug/netcoreapp3.1/cs341-Project01.dll
 /home/mmisay3/my_repos/cs341-Project01/obj/Debug/netcoreapp3.1/cs341-Project01.pdb

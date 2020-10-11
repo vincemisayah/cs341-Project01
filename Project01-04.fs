@@ -15,10 +15,20 @@ module Project01_04
 // You may not call List.nth, List.Item, .[], etc directly in your solution.
 // 
 
-let rec nth L n =
-    List.head L      //   TO BE IMPLEMENTED
+let rec length L =
+    match L with
+    | [] -> 0
+    | e::rest -> 1 + length rest
 
-//[<EntryPoint>]
+let rec nth L n =
+    match L with
+    | [] -> raise (System.ArgumentException("The input sequence was empty."))
+    | x::rest when n > length L || n < 0 -> raise (System.ArgumentException("The input sequence was empty."))
+    | e::rest when n = 0 -> e
+    | _::rest -> nth rest (n-1)
+
+
+[<EntryPoint>]
 let main argv =
     printfn "Testing Project 04: nth"
 
