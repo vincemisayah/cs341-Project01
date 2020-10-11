@@ -4,7 +4,7 @@ git-a:
 	git add .
 
 git-c:
-	git commit -m"update"
+	git commit -m"update now"
 
 git-p:
 	git push
