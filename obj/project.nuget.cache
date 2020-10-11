@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "yK3tggwsjBggJm9uW62zF60f9HAuGekbHwa7aVw5olc6P4QhK6ntdQu2Cbs+6A59MP0cmPlGx4IQW6/6uuNxUg==",
+  "success": true,
+  "projectFilePath": "/home/mmisay3/my_repos/cs341-Project01/cs341-Project01.fsproj",
+  "expectedPackageFiles": [
+    "/home/mmisay3/.nuget/packages/fsharp.core/4.7.2/fsharp.core.4.7.2.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -14,15 +14,26 @@ module Project01_02
 // You may not call List.max directly in your solution.
 // 
 
+// | [] -> raise (System.ArgumentException("The input sequence was empty."))
+
 let max L =
-    List.head L     //   TO BE IMPLEMENTED
+    match L with
+    | [] -> raise (System.ArgumentException("The input sequence was empty."))
+    | _  ->
+    let rec _max L maxSoFar =
+        match L with
+        | [] -> maxSoFar
+        | e::rest when  e > maxSoFar -> _max rest e
+        | _::rest -> _max rest maxSoFar
+    _max L L.Head
 
 
-//[<EntryPoint>]
+[<EntryPoint>]
 let main argv =
     printfn "Testing Project 02: max"
 
     let max2 = max [-2; 4]
+
     if max2 = 4 then
         printfn "Passed!"
     else

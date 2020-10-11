@@ -18,11 +18,11 @@ module Project01_01
 let rec length L =
     match L with
     | [] -> 0
-    | e::rest -> 
+    | e::rest -> 1 + length rest
   
 
 
-//[<EntryPoint>]
+[<EntryPoint>]
 let main argv =
     printfn "Testing Project 01: length"
     let len1 = length []

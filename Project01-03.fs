@@ -18,7 +18,7 @@ let min L =
     List.head L      //   TO BE IMPLEMENTED
 
 
-//[<EntryPoint>]
+[<EntryPoint>]
 let main argv =
     printfn "Testing Project 03: min"
 
