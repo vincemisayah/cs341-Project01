@@ -15,7 +15,15 @@ module Project01_03
 // 
 
 let min L =
-    List.head L      //   TO BE IMPLEMENTED
+    match L with
+    | [] -> raise (System.ArgumentException("The input sequence was empty."))
+    | _  -> 
+    let rec _min L currMin =
+        match L with
+        | []                         -> currMin
+        | hd::tail when hd < currMin -> _min tail hd
+        | _::tail                    -> _min tail currMin
+    _min L L.Head
 
 
 [<EntryPoint>]
