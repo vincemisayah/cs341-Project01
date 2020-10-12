@@ -41,7 +41,9 @@ let matchTuples a b =
 //
 
 let rec length L =
-    0     //   TO BE IMPLEMENTED
+    match L with
+    | [] -> 0
+    | e::rest -> 1 + length rest
 
 //------------------------------------------------------------
 
@@ -62,9 +64,18 @@ let rec length L =
 //           max ['a'; 'e'; 'c'] => e
 //
 
+//TODO let max L =
+//     List.head L     //   TO BE IMPLEMENTED
 let max L =
-    List.head L     //   TO BE IMPLEMENTED
-
+    match L with
+    | [] -> raise (System.ArgumentException("The input sequence was empty."))
+    | _  ->
+    let rec _max L maxSoFar =
+        match L with
+        | [] -> maxSoFar
+        | e::rest when  e > maxSoFar -> _max rest e
+        | _::rest -> _max rest maxSoFar
+    _max L L.Head
 //-------------------------------------------------------------
 
 // The function min returns the value of the minimum element (as determined by the < operator), and should be written in the
@@ -83,8 +94,18 @@ let max L =
 //           min ['d', 'r', 'b'] => b
 //
 
+// TODO let min L =
+//     List.head L      //   TO BE IMPLEMENTED
 let min L =
-    List.head L      //   TO BE IMPLEMENTED
+    match L with
+    | [] -> raise (System.ArgumentException("The input sequence was empty."))
+    | _  -> 
+    let rec _min L currMin =
+        match L with
+        | []                         -> currMin
+        | hd::tail when hd < currMin -> _min tail hd
+        | _::tail                    -> _min tail currMin
+    _min L L.Head
 
 //-------------------------------------------------------------
 
@@ -104,9 +125,14 @@ let min L =
 //           nth ['q'; 'w'; 'e'; 'r'; 't'; 'y'] 5 =>'y'
 // You may not call List.nth, List.Item, .[], etc directly in // your solution.
 
+//TODO let rec nth L n =
+    // List.head L      //   TO BE IMPLEMENTED
 let rec nth L n =
-    List.head L      //   TO BE IMPLEMENTED
-
+    match L with
+    | [] -> raise (System.ArgumentException("The input sequence was empty."))
+    | x::rest when n > length L || n < 0 -> raise (System.ArgumentException("The input sequence was empty."))
+    | e::rest when n = 0 -> e
+    | _::rest -> nth rest (n-1)
 //-------------------------------------------------------------
 
 // The function map returns a new list created from the elements of the list passed in (L), after they have been transformed
@@ -126,8 +152,11 @@ let rec nth L n =
 //           map (fun c-> (char ((int c)+1))) ['a';'b';'c']  => ['b';'c';'d']
 //
 
-let map F L =
-    []     //   TO BE IMPLEMENTED
+//TODO let map F L =
+let rec map F L =
+    match L with
+    | [] -> []
+    | hd::tail -> F hd::map F tail
 
 
 //-------------------------------------------------------------
@@ -146,8 +175,12 @@ let map F L =
 //           iter (fun x -> printfn "Iterating...") []              =>
 //
 
-let iter F L =
-    ()      //   TO BE IMPLEMENTED
+// TODO let iter F L =
+let rec iter F L =
+    match L with
+    | [] -> ()
+    | hd::tl -> F hd; 
+                iter F tl 
 
 //-------------------------------------------------------------
 
@@ -167,8 +200,17 @@ let iter F L =
 //                  ['c'; 'a'; 'n'; 'a'; 'd'; 'a']  => 'n'
 //
 
+//TODOlet reduce F L =
 let reduce F L =
-    List.head L      //   TO BE IMPLEMENTED
+    match L with
+    | [] -> raise (System.ArgumentException("The input sequence was empty."))
+    | _  ->
+    let rec _reduce F L soFar =
+        match L with
+        | []  -> soFar // No more elements
+        | [x] -> soFar // Singleton case
+        | hd::rest -> _reduce F rest (F soFar rest.Head)
+    _reduce F L L.Head
 
 //-------------------------------------------------------------
 
@@ -192,8 +234,12 @@ let reduce F L =
 //          fold (fun x y -> x*y) 1 [23; 5; 80] => 9200
 //
 
+//TODOlet rec fold F start L =
 let rec fold F start L =
-    start    //   TO BE IMPLEMENTED
+    match L with
+    | [ ]       -> start
+    | [x]       -> F start x
+    | hd::rest  -> fold F (F start hd) rest
 
 //-------------------------------------------------------------
 
@@ -215,8 +261,12 @@ let rec fold F start L =
 //                  ['o'; 'n'; ' '; 'w'; 'i'; 'n'; 'g'; 's']
 //
 
-let flatten L =
-    []     //   TO BE IMPLEMENTED
+//TODOlet flatten L =
+let rec flatten L =
+    match L with
+    | [ ] -> [ ]
+    | [x] -> x
+    | hd::rest -> hd@flatten rest
 
 
 //-------------------------------------------------------------
@@ -239,8 +289,15 @@ let flatten L =
 //          zip [1; 2; 3] ['a'; 'b'; 'c'] => [(1, 'a'); (2, 'b'); (3, 'c')]
 //
 
-let zip L1 L2 =
-    []     //   TO BE IMPLEMENTED
+//TODO let zip L1 L2 =
+let rec zip L1 L2 =
+    match L1, L2 with
+    | head1::tail1, head2::tail2 
+                    when length L1 > length L2 || length L1 < length L2 
+                    -> raise (System.ArgumentException("Lists are not the same length."))
+    | [],[]                  -> [ ]
+    | [x],[y]                -> [struct(x, y)]
+    | hd1::rest1, hd2::rest2 -> [struct(hd1, hd2)] @ zip rest1 rest2
 
 
 //-------------------------------------------------------------
@@ -262,8 +319,14 @@ let zip L1 L2 =
 //          unzip [(1, 'a'); (2, 'b'); (3, 'c')] => ([1; 2; 3], ['a'; 'b'; 'c'])
 //
 
-let unzip L =
-    ([],[])     //   TO BE IMPLEMENTED
+//TODOlet unzip L =
+let rec unzip L =
+    match L with
+    | [] -> ([],[])
+    | hd::tail -> let (e1, e2) = hd;
+                  let S1       = unzip tail;
+                  let (t1, t2) = S1;
+                  (e1::t1, e2::t2)
 
 
 //-------------------------------------------------------------
@@ -283,8 +346,13 @@ let unzip L =
 //          range 10 => [0; 1; 2; 3; 4; 5; 6; 7; 8; 9]
 //
 
-let rec range stop  =
-    []     //   TO BE IMPLEMENTED
+//TODO let rec range stop  =
+let range stop =
+    let rec _range stop =
+        match stop with 
+        | 0 -> []
+        | _ ->  stop-1::_range (stop-1)
+    List.rev (_range stop)
 
 
 //-------------------------------------------------------------
@@ -306,8 +374,13 @@ let rec range stop  =
 //       range2 -2 3 => [-2; -1; 0; 1; 2]
 //
 
+//TODO let range2 start stop =
 let range2 start stop =
-    []     //   TO BE IMPLEMENTED
+    let rec _range2 start stop =
+        match start, stop with
+        | x, y when x = y -> []
+        | _ -> start::_range2 (start+1) (stop)
+    _range2 start stop
 
 
 //-------------------------------------------------------------
@@ -329,8 +402,22 @@ let range2 start stop =
 //          range3 5 -2 -3 => [5; 2; -1]
 //
 
+//TODOlet range3 start stop step =
+let get_result a b = a + b
+                  
 let range3 start stop step =
-    []    //TO BE IMPLEMENTED
+    if(start > stop) then
+        let rec _range3 _start _stop soFar =
+            match _start, _stop, soFar with
+            | x, y, z when (soFar = y) || (soFar < y) -> [] 
+            | _ -> soFar::_range3 (get_result _start step) _stop (get_result _start step);
+        _range3 start stop start
+    else
+        let rec _range3 _start _stop soFar =
+            match _start, _stop, soFar with
+            | x, y, z when (soFar = y) || (soFar > y) -> [] 
+            | _ -> soFar::_range3 (get_result _start step) _stop (get_result _start step);          
+        _range3 start stop start
 
 
 //-------------------------------------------------------------
@@ -352,8 +439,17 @@ let range3 start stop step =
 //          slice [1; 2; 3; 4; 5; 6; 7; 8; 9; 10] 6 2 => []
 //
 
+//TODOlet slice L start stop =
 let slice L start stop =
-    []     //   TO BE IMPLEMENTED
+    let rec _slice L curr start stop =
+        match L, curr, start, stop with
+        | list, _curr, _start, _stop when _start > _stop -> []
+        | list      , _curr, _start, _stop  when (_start=0 && _stop =0) -> []
+        |  e::rest, _curr, _start, _stop    when _curr < _start -> _slice rest (_curr+1) start stop
+        | list, _curr, _start, _stop when _curr = _stop -> []
+        | hd::tail, _curr, _start, _stop    when _curr = _start       -> hd::_slice (tail) (_curr+1) (_curr+1) stop
+        | _ -> []
+    _slice L 0 start stop
 
 
 //-------------------------------------------------------------

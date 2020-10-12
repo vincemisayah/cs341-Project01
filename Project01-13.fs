@@ -12,11 +12,19 @@ module Project01_13
 //       range2 -2 3 => [-2; -1; 0; 1; 2]
 //
 
+// let range2 start stop =
+//     []     //   TO BE IMPLEMENTED
+
 let range2 start stop =
-    []     //   TO BE IMPLEMENTED
+    let rec _range2 start stop =
+        match start, stop with
+        | x, y when x = y -> []
+        | _ -> start::_range2 (start+1) (stop)
+    _range2 start stop
 
 
-//[<EntryPoint>]
+
+[<EntryPoint>]
 let main argv =
     printfn "Testing Project 13: range (2)"
 

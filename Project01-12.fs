@@ -14,10 +14,14 @@ module Project01_12
 // let rec range stop  =
 //     []     //   TO BE IMPLEMENTED
 
-let rec range stop =
-    match stop with 
-    | 0 -> []
-    | _ -> stop-1::range stop-1
+let range stop =
+    let rec _range stop =
+        match stop with 
+        | 0 -> []
+        | _ ->  stop-1::_range (stop-1)
+    List.rev (_range stop)
+
+
 
 
 [<EntryPoint>]
@@ -37,6 +41,8 @@ let main argv =
         printfn "Failed!"
         
     let d3 = range 10
+    printf "\n d3: %A \n" d3
+
     if d3 = [0; 1; 2; 3; 4; 5; 6; 7; 8; 9] then
         printfn "Passed!"
     else
