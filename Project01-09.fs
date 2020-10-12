@@ -17,13 +17,27 @@ module Project01_09
 // 
 // 
 
-let flatten L =
-    []     //   TO BE IMPLEMENTED
+// let flatten L =
+//     []     //   TO BE IMPLEMENTED
 
 
-//[<EntryPoint>]
+let rec flatten L =
+    match L with
+    | [ ] -> [ ]
+    | [x] -> x
+    | hd::rest -> hd@flatten rest
+
+
+
+[<EntryPoint>]
 let main argv =
     printfn "Testing Project 09: flatten"
+
+    // let L1 = [1;2]
+    // let L2 = [3;4]
+    // let L3 = L1@L2
+    // printf "Appended: %A" L3
+
 
     let f1 = flatten [[]]
     if f1 = [] then
