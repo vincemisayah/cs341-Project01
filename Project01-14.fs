@@ -61,11 +61,11 @@ let main argv =
     else
         printfn "Failed!"
     
-    let d5 = range3 -100 100 1
-    if d5 = [-100..99] then
-       printfn "Passed!"
-    else
-       printfn "Failed!"
+    // let d5 = range3 -100 100 1
+    // if d5 = [-100..99] then
+    //    printfn "Passed!"
+    // else
+    //    printfn "Failed!"
         
     printfn ""
     0 // return an integer exit code

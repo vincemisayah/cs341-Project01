@@ -48,7 +48,6 @@ let main argv =
 
 // TODO 1
     let t1 = slice [1; 2; 3; 4; 5] 0 0
-    printf "t1: %A\n" t1
     if t1 = [] then
         printfn "Passed!"
     else
@@ -56,7 +55,6 @@ let main argv =
 
 // TODO 2        
     let t2 = slice [1; 2; 3; 4; 5] 0 1
-    printf "\n t2: %A\n" t2
     if t2 = [1] then
         printfn "Passed!"
     else
@@ -64,7 +62,6 @@ let main argv =
         
 // TODO 3          
     let t3 = slice [1; 2; 3; 4; 5] 1 4
-    printf "\n t3: %A\n" t3
     if t3 = [2; 3; 4] then
         printfn "Passed!"
     else
@@ -72,7 +69,6 @@ let main argv =
         
 // TODO 4         
     let t4 = slice [1; 2; 3; 4; 5] 0 5
-    printf "t4: %A\n" t4
     if t4 = [1; 2; 3; 4; 5] then
         printfn "Passed!"
     else
