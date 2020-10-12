@@ -17,7 +17,10 @@ module Project01_08
 // 
 
 let rec fold F start L =
-    start    //   TO BE IMPLEMENTED
+    match L with
+    | [ ]       -> start
+    | [x]       -> F start x
+    | hd::rest  -> fold F (F start hd) rest
 
 
 [<EntryPoint>]
