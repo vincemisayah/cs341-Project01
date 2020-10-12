@@ -20,29 +20,41 @@ let unzip L =
     ([],[])     //   TO BE IMPLEMENTED
 
 
-//[<EntryPoint>]
+[<EntryPoint>]
 let main argv =
     printfn "Testing Project 11: unzip"
 
-    let u11,u12 = unzip []
-    if (u11 = []) && (u12 = []) then
-        printfn "Passed!"
-    else
-        printfn "Failed!"
-        
-    let u21,u22 = unzip [(1, 3); (2, 56); (40, 6)]
-    if (u21 = [1; 2; 40]) && (u22 = [3; 56; 6]) then
-        printfn "Passed!"
-    else
-        printfn "Failed!"
+    let L1 = [(1, 'A')]
+    let a, b = L1.Head
+    
+    printf "\n1. Isolate the struct elements . . . \n"
+    printf "    a: %A \n" a
+    printf "    b: %A \n" b
 
-    let u31,u32 = unzip [(1, 'a'); (2, 'b'); (3, 'c')]
-    if (u31 = [1; 2; 3]) && (u32 = ['a'; 'b'; 'c']) then
-        printfn "Passed!"
-    else
-        printfn "Failed!"
+    let LA, LB = [a], [b]
+    printf "\n2. Create Lists for each separated elements . . . \n"
+    printf "    LA: %A \n" LA
+    printf "    LB: %A \n" LB
+
+    // let u11,u12 = unzip []
+    // if (u11 = []) && (u12 = []) then
+    //     printfn "Passed!"
+    // else
+    //     printfn "Failed!"
         
-    printfn ""
+    // let u21,u22 = unzip [(1, 3); (2, 56); (40, 6)]
+    // if (u21 = [1; 2; 40]) && (u22 = [3; 56; 6]) then
+    //     printfn "Passed!"
+    // else
+    //     printfn "Failed!"
+
+    // let u31,u32 = unzip [(1, 'a'); (2, 'b'); (3, 'c')]
+    // if (u31 = [1; 2; 3]) && (u32 = ['a'; 'b'; 'c']) then
+    //     printfn "Passed!"
+    // else
+    //     printfn "Failed!"
+        
+    // printfn ""
     0 // return an integer exit code
     
 

@@ -15,15 +15,54 @@ module Project01_10
 //          
 // You may not call List.zip directly in your solution.
 // 
-// 
+//
 
-let zip L1 L2 =
-    []     //   TO BE IMPLEMENTED
+let rec iter F L =
+    match L with
+    | [] -> ()
+    | hd::tl -> F hd; 
+                iter F tl
+
+let rec flatten L =
+    match L with
+    | [ ] -> [ ]
+    | [x] -> x
+    | hd::rest -> hd@flatten rest
+
+let rec length L =
+    match L with
+    | [] -> 0
+    | e::rest -> 1 + length rest
+
+// let zip L1 L2 =
+//     []     //   TO BE IMPLEMENTED
+
+let rec zip L1 L2 =
+    match L1, L2 with
+    | head1::tail1, head2::tail2 
+                    when length L1 > length L2 || length L1 < length L2 
+                    -> raise (System.ArgumentException("Lists are not the same length."))
+    | [],[]                  -> [ ]
+    | [x],[y]                -> [struct(x, y)]
+    | hd1::rest1, hd2::rest2 -> [struct(hd1, hd2)] @ zip rest1 rest2
+   
+    // | (_), ([_]) -> []
+    // | (_), ([]) -> []
+    // | (_), ([_;_]) -> []
+    // | (_,[_;_]) -> []
+
 
 
 [<EntryPoint>]
 let main argv =
     printfn "Testing Project 10: zip"
+
+    // let L1 = [1]
+    // let L2 = ['A']
+    // let L3 = struct(L1.Head, L2.Head)
+    // printf "L3: %A \n" L3
+
+
 
     let z1 = zip [] []
     if z1 = [] then
