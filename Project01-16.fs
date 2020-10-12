@@ -17,7 +17,10 @@ module Project01_16
 //
 
 let rec filter F L =
-    []     //   TO BE IMPLEMENTED
+    match L with
+    | [] -> []
+    | hd::tail -> if F L then filter F tail
+                  else filter F tail
 
 
 //[<EntryPoint>]
