@@ -15,30 +15,17 @@ module Project01_07
 // 
 // 
 
-let rec length L =
+// Tail-Recursive
+let reduce F L =
     match L with
-    | [] -> 0
-    | e::rest -> 1 + length rest
-
-// let rec reduce F L = 
-//   match L with
-//   | head::tail -> List.fold F head tail
-//   | [] -> failwith "The list was empty!"
-
-let rec reduce F L = 
-    match L with
-    | []       -> raise (System.ArgumentException("The input sequence was empty."))
-    // Handle Singleton case <---- Example: [false]
-    | hd::tail when length L = 1 -> hd
-    | x::y::rest -> F x y; reduce F rest
-    
-
-    // let rec _reduce F L currVal =
-    //     match L with
-    //     | []       -> currVal
-    //     | hd::tail -> F hd currVal; _reduce F tail currVal
-    // _reduce F L L.Head
-
+    | [] -> raise (System.ArgumentException("The input sequence was empty."))
+    | _  ->
+    let rec _reduce F L soFar =
+        match L with
+        | []  -> soFar // No more elements
+        | [x] -> soFar // Singleton case
+        | hd::rest -> _reduce F rest (F soFar rest.Head)
+    _reduce F L L.Head
 
 [<EntryPoint>]
 let main argv =
@@ -51,24 +38,24 @@ let main argv =
     else
         printfn "Failed!"
         
-    // let red2 = reduce (fun x y -> x*y) [23; 4]
-    // if red2 = 92 then
-    //     printfn "Passed!"
-    // else
-    //     printfn "Failed!"
+    let red2 = reduce (fun x y -> x*y) [23; 4]
+    if red2 = 92 then
+        printfn "Passed!"
+    else
+        printfn "Failed!"
         
-    // let red3 = reduce (fun x y -> x+y) [23; 43; -60]
-    // if red3 = 6 then
-    //     printfn "Passed!"
-    // else
-    //     printfn "Failed!"
+    let red3 = reduce (fun x y -> x+y) [23; 43; -60]
+    if red3 = 6 then
+        printfn "Passed!"
+    else
+        printfn "Failed!"
 
-    // let input4 = ['c'; 'a'; 'n'; 'a'; 'd'; 'a']
-    // let red4 = reduce (fun x y -> if x > y then x else y) input4
-    // if red4 = 'n' then
-    //     printfn "Passed!"
-    // else
-    //     printfn "Failed!"
+    let input4 = ['c'; 'a'; 'n'; 'a'; 'd'; 'a']
+    let red4 = reduce (fun x y -> if x > y then x else y) input4
+    if red4 = 'n' then
+        printfn "Passed!"
+    else
+        printfn "Failed!"
 
     printfn ""
     0 // return an integer exit code

@@ -20,7 +20,7 @@ let rec fold F start L =
     start    //   TO BE IMPLEMENTED
 
 
-//[<EntryPoint>]
+[<EntryPoint>]
 let main argv =
     printfn "Testing Project 08: fold"
 

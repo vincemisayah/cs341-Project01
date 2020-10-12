@@ -29,7 +29,7 @@ let min L =
 [<EntryPoint>]
 let main argv =
     printfn "Testing Project 03: min"
-
+    
     let min2 = min [-2; 4]
     if min2 = -2 then
         printfn "Passed!"
