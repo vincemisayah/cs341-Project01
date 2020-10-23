@@ -15,10 +15,18 @@ module Project01_17
 //          pairUp [] -> []
 //
 
-let pairUp L =
-    []     //   TO BE IMPLEMENTED
+// let pairUp L =
+//     []     //   TO BE IMPLEMENTED
 
-//[<EntryPoint>]
+let pairUp L =
+    let rec _pairUp L =
+        match L with
+        | [ ]          -> [ ]
+        | e::[ ]       -> [ ]
+        | e1::e2::rest -> (e1, e2)::_pairUp rest
+    _pairUp L
+
+[<EntryPoint>]
 let main argv =
     printfn "Testing Project 17: pairUp"
 

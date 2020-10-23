@@ -20,11 +20,17 @@ let withinTolerance num target tolerance =
 //          lengthsFromOrigin [(0.0,-1.0);(-12.3,-18.13);(-15.0,25.0)] ->  
 //                            [0.0;21.90860333;29.15475947]
 //
+let inline distanceFromOrigin (x,y) = sqrt(((float)x**2.0) + ((float)y**2.0))
 
-let lengthsFromOrigin L =
-    []     //   TO BE IMPLEMENTED
 
-//[<EntryPoint>]
+let rec lengthsFromOrigin L =
+    match L with
+    | [ ] -> [ ]
+    | hd::tail ->  let (a, b) = hd; 
+                   distanceFromOrigin (a, b)::lengthsFromOrigin tail
+
+
+[<EntryPoint>]
 let main argv =
     printfn "Testing Project 19: distanceFromOrigin"
 

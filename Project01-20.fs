@@ -1,5 +1,5 @@
 ﻿module Project01_20
-
+#light
 open System
 
 let withinTolerance num target tolerance =
@@ -16,6 +16,10 @@ let matchTuples a b =
          ||
         ((x1=ansX2) && (x2=ansX1) && (y1=ansY2) && (y2=ansY1))
 
+
+
+
+
 //
 // furthestPoints L
 //
@@ -23,47 +27,53 @@ let matchTuples a b =
 // 
 // Examples: 
 //          furthestPoints [(1.0,0.0);(-5.0,0.0)] -> ((1.0,0.0),(-5.0,0.0))
-//          furthestPoints [(1.0,0.0);(-5.0,0.0);(3.0,2.5)] -> 
-//                         ((-5.0,0.0),(3.0,2.5))
-//          furthestPoints [(2.0,0.0);(1.0,1.0);(-0.3,0.5);(0.2,-1.6)] -> 
-//                         ((1.0,1.0),(0.2,-1.6))
+//          furthestPoints [(1.0,0.0);(-5.0,0.0);(3.0,2.5)] -> ((-5.0,0.0),(3.0,2.5))
+//          furthestPoints [(2.0,0.0);(1.0,1.0);(-0.3,0.5);(0.2,-1.6)] -> ((1.0,1.0),(0.2,-1.6))
 //          furthestPoints [(2.0,1.5);(3.0,-1.0);(4.0,0.5);(3.0,1.0)] -> 
 //                         ((2.0,1.5),(3.0,-1.0))
 //
 
-let furthestPoints L =
-    match L with
-    | [] -> raise (new ArgumentException("furthestPoints requires at least two points"))
-    | _::[] -> raise (new ArgumentException("furthestPoints requires at least two points"))
-    | _ -> ((0.0,0.0),(0.0,0.0))     //   TO BE IMPLEMENTED
 
-//[<EntryPoint>]
+
+let inline distanceTwoPoints (x1, y1) (x2, y2) = sqrt( (float)((x2 - x1)**2) + (float)((y2 - y1)**2) )
+
+let rec _iterTail hdVal tailList (float)maxSoFar =
+    match tailList with
+        | [ ] -> []
+        | e::rest -> let hdA hdB =  hdVal;
+                     let (eA, eB)   = e;
+                     _iterTail hdVal rest distanceTwoPoints (hdA, hdB) (eA, eB);
+
+
+
+[<EntryPoint>]
 let main argv =
     printfn "Testing Project 20: furthestPoints"
     
-    let result1 = furthestPoints [(1.0,0.0);(-5.0,0.0)]
-    if matchTuples result1 ((1.0,0.0),(-5.0,0.0)) then
-        printfn "Passed!"
-    else
-        printfn "Failed!"
+    // let result1 = furthestPoints [(1.0,0.0);(-5.0,0.0)]
+    // printf "%A" result1
+    // if matchTuples result1 ((1.0,0.0),(-5.0,0.0)) then
+    //     printfn "Passed!"
+    // else
+    //     printfn "Failed!"
         
-    let result2 = furthestPoints [(1.0,0.0);(-5.0,0.0);(3.0,2.5)]
-    if matchTuples result2 ((-5.0,0.0),(3.0,2.5)) then
-        printfn "Passed!"
-    else
-        printfn "Failed!"
+    // let result2 = furthestPoints [(1.0,0.0);(-5.0,0.0);(3.0,2.5)]
+    // if matchTuples result2 ((-5.0,0.0),(3.0,2.5)) then
+    //     printfn "Passed!"
+    // else
+    //     printfn "Failed!"
         
-    let result3 = furthestPoints [(2.0,0.0);(1.0,1.0);(-0.3,0.5);(0.2,-1.6)]
-    if matchTuples result3 ((1.0,1.0),(0.2,-1.6)) then
-        printfn "Passed!"
-    else
-        printfn "Failed!"
+    // let result3 = furthestPoints [(2.0,0.0);(1.0,1.0);(-0.3,0.5);(0.2,-1.6)]
+    // if matchTuples result3 ((1.0,1.0),(0.2,-1.6)) then
+    //     printfn "Passed!"
+    // else
+    //     printfn "Failed!"
 
-    let result4 = furthestPoints [(2.0,1.5);(3.0,-1.0);(4.0,0.5);(3.0,1.0)]
-    if matchTuples result4 ((2.0,1.5),(3.0,-1.0)) then
-        printfn "Passed!"
-    else
-        printfn "Failed!"
+    // let result4 = furthestPoints [(2.0,1.5);(3.0,-1.0);(4.0,0.5);(3.0,1.0)]
+    // if matchTuples result4 ((2.0,1.5),(3.0,-1.0)) then
+    //     printfn "Passed!"
+    // else
+    //     printfn "Failed!"
 
     printfn ""
     0 // return an integer exit code

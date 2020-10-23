@@ -19,14 +19,15 @@ let withinTolerance num target tolerance =
 //          distanceFromOrigin (0.0,-1.0) -> 1.0
 //          distanceFromOrigin (-15.0,25.0) -> 29.15475947
 //
-//This function can work with both ints and floats due to being inlined
-//https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/functions/inline-functions
+// This function can work with both ints and floats due to being inlined
+// https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/functions/inline-functions
 //
 
-let inline distanceFromOrigin (x,y) =
-    0.0     //   TO BE IMPLEMENTED
+let inline distanceFromOrigin (x,y) = sqrt(((float)x**2.0) + ((float)y**2.0))
+    
 
-//[<EntryPoint>]
+
+[<EntryPoint>]
 let main argv =
     printfn "Testing Project 18: distanceFromOrigin"
 

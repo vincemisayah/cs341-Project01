@@ -16,14 +16,15 @@ module Project01_16
 // You may not use List.filter directly in your solution.
 //
 
-let rec filter F L =
-    match L with
-    | [] -> []
-    | hd::tail -> if F L then filter F tail
-                  else filter F tail
+let filter F L =
+    let rec _filter F L =
+        match L with
+        | [] -> []
+        | hd::tail when F L.Head = true -> hd::_filter F tail
+        | _::rest -> _filter F rest
+    _filter F L
 
-
-//[<EntryPoint>]
+[<EntryPoint>]
 let main argv =
     printfn "Testing Project 16: filter"
 
